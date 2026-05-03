@@ -17,20 +17,27 @@ public class Main {
 
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://onecompiler.com/html/3xfmfsrwk");
-
-        WebElement alertabutton = driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[1]/div[3]/div/button[3]"));
-
-        alertabutton.click();
-
-        WebDriverWait esperar = new WebDriverWait(driver, Duration.ofSeconds(10));
-        esperar.until(ExpectedConditions.alertIsPresent());
-
-        Alert alert = driver.switchTo().alert();
-        System.out.println(alert.getText());
-        alert.accept();
 
 
+            driver.get("https://www.facebook.com/");
+
+            WebDriver newtab = driver.switchTo().newWindow(WindowType.TAB);
+
+            newtab.get("https://www.facebook.com/help/568137493302217");
+
+            WebDriverWait wait = new WebDriverWait(newtab, Duration.ofSeconds(10));
+
+
+            String original = driver.getWindowHandle();
+            String otratab = newtab.getWindowHandle();
+
+            Thread.sleep(10000);
+
+            driver.switchTo().window(original);
+        } catch (InterruptedException e){
+            throw new RuntimeException(e);
+
+        }
     }
 
 }
