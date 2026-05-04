@@ -18,26 +18,26 @@ public class Main {
         WebDriver driver = new ChromeDriver();
 
 
+        driver.get("https://www.facebook.com/");
+        String original = driver.getWindowHandle();
 
-            driver.get("https://www.facebook.com/");
+        WebDriver newtab = driver.switchTo().newWindow(WindowType.TAB);
 
-            WebDriver newtab = driver.switchTo().newWindow(WindowType.TAB);
+        newtab.get("https://www.facebook.com/help/568137493302217");
 
-            newtab.get("https://www.facebook.com/help/568137493302217");
-
-            WebDriverWait wait = new WebDriverWait(newtab, Duration.ofSeconds(10));
-
-
-            String original = driver.getWindowHandle();
-            String otratab = newtab.getWindowHandle();
-
-            Thread.sleep(10000);
-
-            driver.switchTo().window(original);
-        } catch (InterruptedException e){
-            throw new RuntimeException(e);
+        Set<String> todasLasTabs = driver.getWindowHandles();
+        String otratab = "";
+        for (String handle : todasLasTabs) {
+            if (!handle.equals(original)) {
+                otratab = handle;
+                break;
+            }
 
         }
+
+        System.out.println(original);
+        System.out.println(otratab);
+        driver.switchTo().window(original);
     }
 
 }
