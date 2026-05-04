@@ -17,27 +17,13 @@ public class Main {
 
         WebDriver driver = new ChromeDriver();
 
+        driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_iframe");
+        driver.switchTo().frame("iframeResult");
+        driver.switchTo().frame(driver.findElement(By.xpath("/html/body/iframe")));
 
-        driver.get("https://www.facebook.com/");
-        String original = driver.getWindowHandle();
+        WebElement iframeElement = driver.findElement(By.xpath("//a[text()='HTML']"));
+        iframeElement.click();
 
-        WebDriver newtab = driver.switchTo().newWindow(WindowType.TAB);
-
-        newtab.get("https://www.facebook.com/help/568137493302217");
-
-        Set<String> todasLasTabs = driver.getWindowHandles();
-        String otratab = "";
-        for (String handle : todasLasTabs) {
-            if (!handle.equals(original)) {
-                otratab = handle;
-                break;
-            }
-
-        }
-
-        System.out.println(original);
-        System.out.println(otratab);
-        driver.switchTo().window(original);
     }
 
 }
