@@ -1,6 +1,7 @@
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -17,12 +18,19 @@ public class Main {
 
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_iframe");
-        driver.switchTo().frame("iframeResult");
-        driver.switchTo().frame(driver.findElement(By.xpath("/html/body/iframe")));
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_draganddrop");
 
-        WebElement iframeElement = driver.findElement(By.xpath("//a[text()='HTML']"));
-        iframeElement.click();
+        //cambiar al iframe
+        driver.switchTo().frame("iframeResult");
+
+        WebElement drag = driver.findElement(By.id("img1"));
+        WebElement div1 = driver.findElement(By.id("div1"));
+
+        // Realizar el drag and drop
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(drag, div1).perform();
+
+
 
     }
 
