@@ -18,19 +18,12 @@ public class Main {
 
         WebDriver driver = new ChromeDriver();
 
-        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_draganddrop");
+        // configurar espera explicita
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        //cambiar al iframe
-        driver.switchTo().frame("iframeResult");
-
-        WebElement drag = driver.findElement(By.id("img1"));
-        WebElement div1 = driver.findElement(By.id("div1"));
-
-        // Realizar el drag and drop
-        Actions actions = new Actions(driver);
-        actions.dragAndDrop(drag, div1).perform();
-
-
+        driver.get("https://www.facebook.com/");
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("_R_64mkqsr9pb6amH1_")));
+        emailField.sendKeys("correoejemplo@gmail.com");
 
     }
 
