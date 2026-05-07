@@ -23,7 +23,9 @@ public class Main {
 
         driver.get("https://www.facebook.com");
 
-        WebElement email = driver.findElement(By.xpath("input[@id='email']"));
+        //WebElement emailCss = driver.findElement(By.cssSelector("input[id='_R_64mkqsr9pb6amH1_']"));
+        WebElement emailCss = driver.findElement(By.cssSelector("div>input[id='_R_64mkqsr9pb6amH1_']"));
+        emailCss.sendKeys("hola@gmail.com");
 
 
 
