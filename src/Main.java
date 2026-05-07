@@ -21,10 +21,11 @@ public class Main {
         // configurar espera explicita
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        driver.get("https://www.facebook.com/");
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("_R_64mkqsr9pb6amH1_")));
-        emailField.sendKeys("correoejemplo@gmail.com");
+        driver.get("https://www.facebook.com");
+
+        WebElement email = driver.findElement(By.xpath("input[@id='email']"));
+
+
 
     }
-
 }
