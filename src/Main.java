@@ -23,11 +23,10 @@ public class Main {
 
         driver.get("https://www.facebook.com");
 
-        //WebElement emailCss = driver.findElement(By.cssSelector("input[id='_R_64mkqsr9pb6amH1_']"));
-        WebElement emailCss = driver.findElement(By.cssSelector("div>input[id='_R_64mkqsr9pb6amH1_']"));
-        emailCss.sendKeys("hola@gmail.com");
+        Actions actions = new Actions(driver);
 
+        WebElement email = driver.findElement(By.id("_R_64mkqsr9pb6amH1_"));
 
-
+        actions.contextClick(email).perform();
     }
 }
